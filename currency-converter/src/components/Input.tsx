@@ -42,6 +42,53 @@ class Input extends React.Component {
                     <option value="AMD">AMD - Armenian Dram</option>
                     <option value="ANG">ANG - Netherlands Antillean Guilder</option>
                     <option value="AOA">AOA - Angolan Kwanza</option>
+                    <option value="AOA">ARS - Argentine Peso</option>
+                    <option value="AUD">AUD - Australian Dollar</option>
+                    <option value="AWG">AWG - Aruban Florin</option>
+                    <option value="AZN">AZN - Azerbaijani Manat</option>
+                    <option value="BAM">BAM - Bosnia-Herzegovina Convertible Mark</option>
+                    <option value="BBD">BBD - Barbadian Dollar</option>
+                    <option value="BDT">BDT - Bangladeshi Taka</option>
+                    <option value="BGN">BGN - Bulgarian Lev</option>
+                    <option value="BHD">BHD - Bahraini Dinar</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BMD">BMD - Bermudan Dollar</option>
+                    <option value="BND">BND - Brunei Dollar</option>
+                    <option value="BOB">BOB - Bolivian Boliviano</option>
+                    <option value="BRL">BRL - Brazilian Real</option>
+                    <option value="BSD">BSD - Bahamian Dollar</option>
+                    <option value="BTC">BTC - Bitcoin</option>
+                    <option value="BTN">BTN - Bhutanese Ngultrum</option>
+                    <option value="BWP">BWP - Botswanan Pula</option>
+                    <option value="BYN">BYN - Belarusian Ruble</option>
+                    <option value="BZD">BZD - Belize Dollar</option>
+                    <option value="CAD">CAD - Canadian Dollar</option>
+                    <option value="CDF">CDF - Congolese Franc</option>
+                    <option value="CHF">CHF - Swiss Franc</option>
+                    <option value="CLF">CLF - Chilean Unit of Account (UF)</option>
+                    <option value="CLP">CLP - Chilean Peso</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                    <option value="COP">COP - Colombian Peso</option>
+                    <option value="CRC">CRC - Costa Rican Colón</option>
+                    <option value="CUC">CUC - Cuban Covertable Peso</option>
+                    <option value="CUP">CUP - Cuban Peso</option>
+                    <option value="CVE">CVE - Cape Verdean Escudo</option>
+                    <option value="CZK">CZK - Czech Republic Koruna</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+                    <option value="BIF">BIF - Burundian Franc</option>
+
+
 
                 </select>
                 
