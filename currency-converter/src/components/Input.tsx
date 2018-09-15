@@ -2,10 +2,10 @@ import * as React from 'react';
 import List from './List';
 
 interface IState {
-    error: any,
     fromCurr: string,
     numberEntered: number,
     results: number,
+    succ: boolean,
     toCurr: string
 }
 
@@ -15,10 +15,10 @@ class Input extends React.Component<{}, IState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            error: '',
             fromCurr: 'AED',
             numberEntered: 0.0,
             results: 0.0,
+            succ: false,
             toCurr: 'AED'
         }
         this.numberEntered = this.numberEntered.bind(this);
@@ -28,10 +28,16 @@ class Input extends React.Component<{}, IState> {
 
     public getConversion = async (e: any) => {
         e.preventDefault();
+        // There is a fetch call to directly convert between two currencies, but it costs money to use that :(
         const apiCall = await fetch(`http://data.fixer.io/api/latest?access_key=${API_KEY}`);
         const data = await apiCall.json();
         global.console.log(data);
         global.console.log("hello 2");
+        this.setState({
+            results: data.rates.USD,
+            succ: data.success
+        });
+        global.console.log(this.state.results);
     }
 
     public numberEntered(event: { target: {value: any;};}) {
@@ -50,7 +56,7 @@ class Input extends React.Component<{}, IState> {
                 <List name="hi"/>
                 <h2>To</h2>
                 <List name="bye"/>
-                <button id='btn' disabled={true}>Convert</button>
+                <button id='btn' disabled={false}>Convert</button>
            </form>
         );
     }
