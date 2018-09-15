@@ -26,9 +26,9 @@ class Input extends React.Component {
            <form onSubmit={this.getConversion}>
                 <input id='in' type="number"/>
                 <h2>From</h2>
-                <List />
+                <List name="hi"/>
                 <h2>To</h2>
-                <List />
+                <List name="bye"/>
                 <button id='btn' disabled={true}>Convert!</button>
            </form>
         );

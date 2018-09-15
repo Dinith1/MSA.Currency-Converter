@@ -1,22 +1,38 @@
 import * as React from 'react';
 
 
-class List extends React.Component {
-    public state = {
-        curr: undefined
-    }
+interface IProps {
+    name: string;
+}
+
+interface IState {
+    curr: string,
+}
+
+class List extends React.Component<IProps, IState> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+          curr: 'AED'
+        };
+        this.setCurr = this.setCurr.bind(this);
+      }
 
     public setCurr() {
         const tmp = (document.getElementById("sel")) as HTMLSelectElement;
-        const tmpCurr = tmp.options[tmp.selectedIndex].value;
-        global.console.log(tmpCurr);
+        // const tmpCurr = tmp.options[tmp.selectedIndex].value;
+        // global.console.log(tmpCurr);
+        // global.console.log(this.state.curr);
+        this.setState({
+            curr: tmp.options[tmp.selectedIndex].value
+        });
     }
 
       public render() {
-        global.console.log("rendered");
+        global.console.log(this.state);
         return(
             <select id="sel" onChange={this.setCurr}>
-                    <option value="AED">AED - United Arab Emirates Dirham</option>
+                    <option value="AED">AED - United Arab Emirates Dirham, {this.props.name}</option>
                     <option value="AFN">AFN - Afghan Afghani</option>
                     <option value="ALL">ALL - Albanian Lek</option>
                     <option value="AMD">AMD - Armenian Dram</option>
