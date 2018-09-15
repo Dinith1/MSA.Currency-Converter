@@ -6,7 +6,7 @@ interface IProps {
 }
 
 interface IState {
-    curr: string,
+    curr: string
 }
 
 class List extends React.Component<IProps, IState> {
@@ -20,9 +20,6 @@ class List extends React.Component<IProps, IState> {
 
     public setCurr() {
         const tmp = (document.getElementById("sel")) as HTMLSelectElement;
-        // const tmpCurr = tmp.options[tmp.selectedIndex].value;
-        // global.console.log(tmpCurr);
-        // global.console.log(this.state.curr);
         this.setState({
             curr: tmp.options[tmp.selectedIndex].value
         });
