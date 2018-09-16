@@ -1,6 +1,8 @@
+import Button from '@material-ui/core/Button';
 import * as React from 'react';
 import './App.css';
 import TopBar from './components/TopBar'
+
 
 interface IState {
   fromCurr: string,
@@ -476,8 +478,10 @@ class App extends React.Component<{}, IState> {
                     <option value="ZMW">ZMW - Zambian Kwacha</option>
                     <option value="ZWL">ZWL - Zimbabwean Dollars</option>
                 </select>
-                <div>
-                  <button id='btn' disabled={false}>Convert</button>
+                <div id="btn">
+                  <Button variant="outlined" color="primary" type="submit">
+                    Submit
+                  </Button>
                 </div>
             </form>
         </div>
