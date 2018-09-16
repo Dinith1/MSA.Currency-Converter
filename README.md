@@ -1,5 +1,5 @@
 # MSA_app
 
-I have have a paid subscription to use https :(, so enable scripts in the browser.
+I need to have a paid subscription for the API to use https :(, so enable scripts in the browser.
 
 https://converteroo.azurewebsites.net/
