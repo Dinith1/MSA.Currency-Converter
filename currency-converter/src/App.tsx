@@ -73,12 +73,26 @@ class App extends React.Component<{}, IState> {
   }
 
 
-  public numberEntered(event: { target: {value: any;};}) {
+  // public numberEntered(event: { target: {value: any;};}) {
+  //   this.setState({
+  //       numberEntered: event.target.value
+  //   });
+  //   // CURRENTLY CALLS 1 INPUT BEFORE 
+  //   global.console.log(this.state.numberEntered);
+  // }
+
+  public numberEntered() {
+    const tmp = (document.getElementById("inputNumber")) as HTMLSelectElement;
+    const num = tmp.value;
+    let actualNum;
+    if (num === "" || Number(num) < 0) {
+        actualNum = 0.0;
+    } else {
+        actualNum = Number(num);
+    }
     this.setState({
-        numberEntered: event.target.value
+      numberEntered: actualNum
     });
-    // CURRENTLY CALLS 1 INPUT BEFORE 
-    global.console.log(this.state.numberEntered);
   }
 
 
@@ -109,7 +123,7 @@ class App extends React.Component<{}, IState> {
 
         <div className="Input">
         <form onSubmit={this.getConversion}>
-                <input id='inputNumber' type="number" value={this.state.numberEntered} onChange={this.numberEntered}/>
+                <input id='inputNumber' type="number" onChange={this.numberEntered}/>
 
                 <h2>From</h2>
                 <select id="selFrom" onChange={this.setFrom}>
