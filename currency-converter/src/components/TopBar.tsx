@@ -4,7 +4,6 @@ import * as React from 'react';
 
 
 // UI component that uses Material-UI
-// The top title bar
 class TopBar extends React.Component {
     public render() {
         return(

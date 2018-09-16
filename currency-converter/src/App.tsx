@@ -10,16 +10,15 @@ interface IState {
   toCurr: string
 }
 
-// Using https://fixer.io/
 // API_KEY may need to be changed as a free account/key is only allowed 1000 API calls per month
 const API_KEY = "4ddcdab68c1cf31066b32b923eefe5ed";
 
+// This App converts between two currencies, using conversion rates that are updated hourly via https://fixer.io/
 class App extends React.Component<{}, IState> {
 
   constructor(props: any) {
     super(props);
     this.state = {
-        // curr: 'AED',
         fromCurr: 'AED',
         numberEntered: 0.0,
         result: 0.0,
@@ -64,7 +63,7 @@ class App extends React.Component<{}, IState> {
     const apiCall = await fetch(`http://data.fixer.io/api/latest?access_key=${API_KEY}`);
     const data = await apiCall.json();
 
-    // If conversion doesn't work, check what is returned from API
+    // If conversion doesn't work, check what is returned from API ~ print to console
     global.console.log(data);
     this.setState({
         numberEntered: actualNum,
@@ -88,6 +87,7 @@ class App extends React.Component<{}, IState> {
     });
   }
 
+
   // Currency to convert from
   public setFrom() {
     const tmp = (document.getElementById("selFrom")) as HTMLSelectElement;
@@ -95,6 +95,7 @@ class App extends React.Component<{}, IState> {
         fromCurr: tmp.options[tmp.selectedIndex].value
     });
   }
+
 
   // Currency to convert to
   public setTo() {
@@ -481,9 +482,7 @@ class App extends React.Component<{}, IState> {
             </form>
         </div>
 
-        <div id="results">
-              <h1>_______</h1>
-        </div>
+        <h1 id="results">_______</h1>
       </div>
     );
   }
