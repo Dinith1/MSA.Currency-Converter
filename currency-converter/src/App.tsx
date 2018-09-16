@@ -1,9 +1,8 @@
 import * as React from 'react';
 import './App.css';
-
+import TopBar from './components/TopBar'
 
 interface IState {
-  // curr: string
   fromCurr: string,
   numberEntered: number,
   result: number,
@@ -11,10 +10,12 @@ interface IState {
   toCurr: string
 }
 
+// Using https://fixer.io/
+// API_KEY may need to be changed as a free account/key is only allowed 1000 API calls per month
 const API_KEY = "4ddcdab68c1cf31066b32b923eefe5ed";
 
-
 class App extends React.Component<{}, IState> {
+
   constructor(props: any) {
     super(props);
     this.state = {
@@ -30,19 +31,21 @@ class App extends React.Component<{}, IState> {
     this.setFrom = this.setFrom.bind(this);
     this.setTo = this.setTo.bind(this);
     this.doConversion = this.doConversion.bind(this);
+    this.validate = this.validate.bind(this);
   }
 
 
   public doConversion(data: any) {
-    global.console.log("THIS DATA HAS : " + data.rates[this.state.fromCurr]);
     const fromRate = data.rates[this.state.fromCurr];
     const toRate = data.rates[this.state.toCurr];
     this.setState ({
+      // Calculate conversion
       result: (1/fromRate*toRate)*this.state.numberEntered
     });
     const resultDisplay = (document.getElementById("results")) as HTMLSelectElement;
     resultDisplay.innerHTML = this.state.result.toString();
   }
+
 
   public getConversion = async (e: any) => {
     e.preventDefault();
@@ -56,30 +59,20 @@ class App extends React.Component<{}, IState> {
     } else {
         actualNum = Number(num);
     }
+
     // There is a fetch call to directly convert between two currencies, but it costs money to use that :(
     const apiCall = await fetch(`http://data.fixer.io/api/latest?access_key=${API_KEY}`);
     const data = await apiCall.json();
-    this.doConversion(data);
+
+    // If conversion doesn't work, check what is returned from API
     global.console.log(data);
     this.setState({
         numberEntered: actualNum,
-        result: data.rates.USD,
         succ: data.success
     });
-    global.console.log("From - " + this.state.fromCurr);
-    global.console.log("To - " + this.state.toCurr);
-    global.console.log(this.state.result);
-    global.console.log(this.state.numberEntered);
+    this.doConversion(data);
   }
 
-
-  // public numberEntered(event: { target: {value: any;};}) {
-  //   this.setState({
-  //       numberEntered: event.target.value
-  //   });
-  //   // CURRENTLY CALLS 1 INPUT BEFORE 
-  //   global.console.log(this.state.numberEntered);
-  // }
 
   public numberEntered() {
     const tmp = (document.getElementById("inputNumber")) as HTMLSelectElement;
@@ -95,35 +88,53 @@ class App extends React.Component<{}, IState> {
     });
   }
 
-
+  // Currency to convert from
   public setFrom() {
     const tmp = (document.getElementById("selFrom")) as HTMLSelectElement;
     this.setState({
         fromCurr: tmp.options[tmp.selectedIndex].value
     });
-    global.console.log("From - " + this.state.fromCurr);
   }
 
-
+  // Currency to convert to
   public setTo() {
     const tmp = (document.getElementById("selTo")) as HTMLSelectElement;
     this.setState({
         toCurr: tmp.options[tmp.selectedIndex].value
     });
-    global.console.log("To - " + this.state.toCurr);
   }
+
+
+  // Only allow numbers and decimal places when taking user input
+  // Taken from https://stackoverflow.com/questions/469357/html-text-input-allows-only-numeric-input
+  public validate(evt: any) {
+    const theEvent = evt || window.event;
+    let key;
+    // Handle paste
+    if (theEvent.type === 'paste') {
+        key = evt.clipboardData.getData('text/plain');
+    } else {
+    // Handle key press
+        key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+    }
+    const regex = /[0-9]|\./;
+    if( !regex.test(key) ) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) {
+        theEvent.preventDefault();
+      }
+    }
+  }
+
 
   public render() {
     return (
       <div className="App">
-        <div className="Title">
-              <h1>Currency Converter</h1>
-              <p>Convert between two currencies...</p>
-        </div>
-
+        <TopBar />
         <div className="Input">
         <form onSubmit={this.getConversion}>
-                <input id='inputNumber' type="number" onChange={this.numberEntered}/>
+                <input id='inputNumber' placeholder="Enter amount to convert" onKeyPress={this.validate} onChange={this.numberEntered}/>
 
                 <h2>From</h2>
                 <select id="selFrom" onChange={this.setFrom}>
@@ -464,12 +475,14 @@ class App extends React.Component<{}, IState> {
                     <option value="ZMW">ZMW - Zambian Kwacha</option>
                     <option value="ZWL">ZWL - Zimbabwean Dollars</option>
                 </select>
-                <button id='btn' disabled={false}>Convert</button>
+                <div>
+                  <button id='btn' disabled={false}>Convert</button>
+                </div>
             </form>
         </div>
 
         <div id="results">
-              <h1>RESULTS GO HERE</h1>
+              <h1>_______</h1>
         </div>
       </div>
     );

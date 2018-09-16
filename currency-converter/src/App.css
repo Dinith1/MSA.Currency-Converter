@@ -1,0 +1,33 @@
+.App {
+    align-content: center;
+    color: royalblue;
+    text-align: center; 
+}
+
+
+#inputNumber {
+    margin-top: 30px;
+    border-color: royalblue;
+}
+
+#selFrom {
+    border-color: royalblue;
+    color: rgb(83, 4, 148);
+    background-color: rgba(242, 152, 68, 0.529);
+}
+
+#selTo {
+    border-color: royalblue;
+    color: rgb(83, 4, 148);
+    background-color: rgba(242, 152, 68, 0.529);
+}
+
+#btn {
+    margin-top: 30px;
+    color: white;
+    background-color: royalblue;
+}
+
+#results {
+    margin-top: 30px;
+}
